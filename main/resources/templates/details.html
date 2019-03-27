@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--<title th:text="${animal.name} + ' - szczegóły'">Szczegóły</title>-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style type="text/css">
+        body {margin: 1em 2em auto 2em; max-width: 50em;}
+        .header {background-color: lightgrey; padding: 1em;}
+        .short-description {font-weight: normal;}
+        span {font-size: medium}
+        .black-url {color: black; text-decoration: none}
+        /*.list-unstyled {padding: 0.5em}*/
+    </style>
+
+</head>
+<body>
+
+    <a class="black-url" href="/">
+        <h1 class="header">Schronisko Reksio i Klakier</h1></a>
+    <a href="/">Powrót do listy</a><br>
+
+    <a th:href="@{'/edit?id=' + ${animal.id}}" th:text="Edytuj"></a>
+
+    <p><h2 th:text="${animal.name}">Imię zwierzaka</h2>
+    <span>Kategoria: </span><span th:text="${animal.category.name}">brak danych</span>
+    <p><h6 class="short-description" th:text="${#strings.abbreviate(animal.shortDescription, 100)}">Opis zwierzaka</h6><br>
+    <p th:text="${animal.longDescription}"></p>
+
+
+
+</body>
+</html>

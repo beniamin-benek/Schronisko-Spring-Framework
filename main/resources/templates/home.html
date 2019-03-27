@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reksio i Klakier</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style type="text/css">
+        body {margin: 1em 2em auto 2em; max-width: 50em;}
+        .header {background-color: lightgrey; padding: 1em;}
+        .list-unstyled {padding: 0.5em}
+        .black-url {color: black; text-decoration: none}
+        .table {border: none;}
+        li {margin-bottom: 1em;}
+        a {margin-right: 1em;}
+        ul#menu li {display:inline; margin-left: 2em;}
+        #menu {margin-top: 0.8em}
+        .all-category {margin-left: 2em;}
+    </style>
+</head>
+<body>
+
+<a class="black-url" href="/">
+    <h1 class="header">Schronisko Reksio i Klakier</h1></a>
+<a href="/add">Dodaj zwierzaka</a>
+<ul id="menu"> Kategorie:
+    <a class="all-category" href="/">Wszystkie</a>
+    <li th:each="category : ${categories}">
+        <a th:href="@{'/category?name=' + ${category.name}}" name="category" th:text="${category.name}"></a>
+    </li>
+</ul>
+
+<p><h2>Zwierzaki szukające domu</h2>
+
+<ol class="list-unstyled">
+    <li th:each="animal : ${animals}">
+        <a th:href="@{'/details?id=' + ${animal.id}}">
+            <img th:src="${(animal.image != null && !#strings.isEmpty(animal.image)) ? animal.image : '//images2.imagebam.com/2f/cb/b2/bd89b61175528174.png'}" th:height="180px" th:width="180px" alt="foto" src=""/>
+        </a>
+        <a th:href="@{'/details?id=' + ${animal.id}}" th:text="${animal.name}"></a>
+        <br><a th:href="@{'/details?id=' + ${animal.id}}" th:text="${#strings.abbreviate(animal.shortDescription, 100)}"></a>
+    </li>
+</ol>
+
+</body>
+</html>

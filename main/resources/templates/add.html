@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style type="text/css">
+        body {margin: 1em 2em auto 2em; max-width: 50em;}
+        .header {background-color: lightgrey; padding: 1em;}
+        .black-url {color: black; text-decoration: none}
+        label {margin-top: 1em}
+        button {margin-top: 1.5em}
+    </style>
+</head>
+<body>
+<a class="black-url" href="/">
+    <h1 class="header">Schronisko Reksio i Klakier</h1></a>
+<h4>Dodaj nowego zwierzaka</h4>
+<a href="/">Powrót do listy</a>
+
+<form action="/post" method="post" th:object="${newAnimal}">
+    <div class="form-group" >
+        <label>Imię</label>
+        <input type="text" th:field="*{name}" name="name" class="form-control" placeholder="Imię" required>
+        <label>Krótki opis</label>
+        <input type="text" th:field="*{shortDescription}" name="shortDescription" class="form-control" placeholder="Krótki opis" required>
+        <label>Kategoria</label>
+        <select  name="category" class="form-control" id="exampleFormControlSelect1">
+            <option th:field="*{category}" th:each="category : ${categories}" th:text="${category.name}" th:value="${category.name}">Kategoria</option>
+        </select>
+        <label>Dłuższy opis</label>
+        <textarea th:field="*{longDescription}" name="longDescription" class="form-control" id="validationTextarea" placeholder="Opisz zwierzaka w kilku słowach"></textarea>
+        <label>Link do zdjęcia</label>
+        <input th:field="*{image}" type="url" name="url" class="form-control" placeholder="Wklej adres obrazka">
+        <small id="imageDimensionsHelpBlock" class="form-text text-muted">Zalecane proporcje grafiki: 1:1 (kwadrat).</small>
+        <button type="submit" class="btn btn-primary">Dodaj</button>
+
+    </div>
+</form>
+</body>
+</html>
